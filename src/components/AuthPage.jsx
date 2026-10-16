@@ -64,39 +64,30 @@ function AuthPage({ mode = "login" }) {
       ? { username: name, email, password }
       : { email, password };
 
+    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/auth/${endpoint}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(body),
-        }
-      );
+      const response = await fetch(`${API_URL}/api/auth/${endpoint}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(
-          data.message || "Something went wrong."
-        );
+        throw new Error(data.message || "Something went wrong.");
       }
 
       sessionStorage.setItem("token", data.token);
-      sessionStorage.setItem(
-        "user",
-        JSON.stringify(data.user)
-      );
+      sessionStorage.setItem("user", JSON.stringify(data.user));
 
       alert(data.message);
 
       navigate("/dashboard");
     } catch (error) {
-      alert(
-        error.message || "Could not connect to YapBook."
-      );
+      alert(error.message || "Could not connect to YapBook.");
     }
   }
 
@@ -109,9 +100,7 @@ function AuthPage({ mode = "login" }) {
 
         <Link to={content.switchPath} className="nav-link">
           {isSignup ? "Already one of us?" : "New here?"}
-          <span>
-            {isSignup ? "Log in ↗" : "Join us ↗"}
-          </span>
+          <span>{isSignup ? "Log in ↗" : "Join us ↗"}</span>
         </Link>
       </nav>
 
@@ -120,16 +109,12 @@ function AuthPage({ mode = "login" }) {
           <h1>
             {content.title}
             <br />
-            <span className="highlight">
-              {content.highlight}
-            </span>
+            <span className="highlight">{content.highlight}</span>
             <br />
             {content.ending}
           </h1>
 
-          <p className="intro-copy">
-            {content.description}
-          </p>
+          <p className="intro-copy">{content.description}</p>
 
           <div className="sticker-stage">
             {stickers.map((sticker) => (
@@ -155,9 +140,7 @@ function AuthPage({ mode = "login" }) {
                 <span>3:17 am</span>
               </div>
 
-              <p className="note-scribble">
-                ~ just saying ~
-              </p>
+              <p className="note-scribble">~ just saying ~</p>
             </article>
           </div>
         </div>
@@ -173,10 +156,7 @@ function AuthPage({ mode = "login" }) {
             </h2>
           </div>
 
-          <form
-            className="auth-form"
-            onSubmit={handleSubmit}
-          >
+          <form className="auth-form" onSubmit={handleSubmit}>
             {isSignup && (
               <>
                 <label htmlFor="name">Your name</label>
@@ -206,11 +186,7 @@ function AuthPage({ mode = "login" }) {
             <div className="password-label">
               <label htmlFor="password">Password</label>
 
-              {!isSignup && (
-                <Link to="/forgot-password">
-                  Forgot?
-                </Link>
-              )}
+              {!isSignup && <Link to="/forgot-password">Forgot?</Link>}
             </div>
 
             <input
@@ -218,23 +194,14 @@ function AuthPage({ mode = "login" }) {
               name="password"
               type="password"
               placeholder={
-                isSignup
-                  ? "Create a password"
-                  : "Your secret password"
+                isSignup ? "Create a password" : "Your secret password"
               }
-              autoComplete={
-                isSignup
-                  ? "new-password"
-                  : "current-password"
-              }
+              autoComplete={isSignup ? "new-password" : "current-password"}
               minLength={isSignup ? 8 : undefined}
               required
             />
 
-            <button
-              type="submit"
-              className="auth-submit"
-            >
+            <button type="submit" className="auth-submit">
               {content.button}
               <span aria-hidden="true">↗</span>
             </button>
@@ -242,14 +209,11 @@ function AuthPage({ mode = "login" }) {
 
           <p className="auth-switch">
             {content.switchText}{" "}
-            <Link to={content.switchPath}>
-              {content.switchLink}
-            </Link>
+            <Link to={content.switchPath}>{content.switchLink}</Link>
           </p>
 
           <p className="form-footnote">
-            MADE FOR ALL YOUR LITTLE YAPS{" "}
-            <span>♡</span>
+            MADE FOR ALL YOUR LITTLE YAPS <span>♡</span>
           </p>
         </div>
       </section>
