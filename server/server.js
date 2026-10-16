@@ -14,7 +14,7 @@ app.use("/api/auth", authRoutes);
 
 app.get("/", (req, res) => {
   res.json({
-    message: "Yapbook API is running ✦",
+    message: "Yapbook API is running",
   });
 });
 
@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 5000;
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    console.log("MongoDB connected ✦");
+    console.log("MongoDB connected");
 
     app.listen(PORT, () => {
       console.log(`Yapbook server running on port ${PORT}`);

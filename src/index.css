@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --paper: #fffaf1;
+  --ink: #252321;
+  --muted: #81796f;
+  --lilac: #d7c5ff;
+  --pink: #ffb6d0;
+  --yellow: #ffe477;
+  --green: #c8e6cb;
+  --line: #e7dfd3;
+}
