@@ -62,7 +62,7 @@ function AuthPage({ mode = "login" }) {
 
     const body = isSignup
       ? { username: name, email, password }
-      : { email, password };
+      : { email, password }; 
 
     const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
     try {
@@ -85,7 +85,7 @@ function AuthPage({ mode = "login" }) {
 
       alert(data.message);
 
-      navigate("/dashboard");
+      navigate("/");
     } catch (error) {
       alert(error.message || "Could not connect to YapBook.");
     }

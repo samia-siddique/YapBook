@@ -10,11 +10,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<MainLayout />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/yap/new" element={<NoteEditor />} />
-        </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup/>} />
       </Routes>
